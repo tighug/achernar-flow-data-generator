@@ -1,0 +1,8 @@
+{
+  "name": "achernar-init-flow-db-generator",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/tighug/achernar-init-flow-db-generator",
+  "author": "tighug <kapuriko123@gmail.com>",
+  "license": "MIT"
+}
