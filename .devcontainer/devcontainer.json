@@ -1,5 +1,5 @@
 {
-  "name": "Achernar Init Flow DB Generator",
+  "name": "Achernar Flow Data Generator",
   "build": {
     "dockerfile": "Dockerfile",
     "target": "development",
@@ -21,7 +21,6 @@
     "dbaeumer.vscode-eslint"
   ],
   "mounts": [
-    "source=achernar-init-flow-db-generator-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+    "source=achernar-flow-data-generator-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
   ]
-  // "containerUser": "node",
 }
