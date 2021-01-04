@@ -12,11 +12,13 @@ git clone https://github.com/tighug/achernar-flow-data-generator.git
 
 ## Usage
 
-1. Download "LV network models" from [Electricity North West](https://www.enwl.co.uk/go-net-zero/innovation/smaller-projects/low-carbon-networks-fund/low-voltage-network-solutions/)
-2. Copy the contents into the `resource/`
-3. Rename a few "Network\_..." directories to "network\_..."
-4. Run `yarn start`
-5. Get csv files in the `out/`
+1. Download "LV network models" and "LCT Profiles" from [Electricity North West](https://www.enwl.co.uk/go-net-zero/innovation/smaller-projects/low-carbon-networks-fund/low-voltage-network-solutions/)
+2. Unzip the both zip files
+3. Copy the contents of "LV network models" into the `resource/lvn/`
+4. Copy the contents of "lct-profiles" into the `resource/lct/`
+5. Rename a few "Network\_..." directories to "network\_..." in `lvn/`
+6. Run `yarn start`
+7. Get csv files in the `out/`
 
 ## License
 
