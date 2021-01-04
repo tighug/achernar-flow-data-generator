@@ -1,8 +1,9 @@
-import xlsx from "xlsx";
+import xlsx, { utils } from "xlsx";
 import fs from "fs";
 import { LineCodeData } from "./model/LineCodeData";
 import { FeederData } from "./model/FeederData";
 import { PositionData } from "./model/PositionData";
+import { ProfileData } from "./model/ProfileData";
 
 export class Reader {
   readFeederFile(path: string): FeederData {
@@ -68,6 +69,19 @@ export class Reader {
     return lineCodeData;
   }
 
+  readProfileFile(path: string): ProfileData {
+    const array = this.readProfile(path, "Sheet1");
+    const profiles: ProfileData = [];
+
+    array.forEach((column, c) => {
+      column.forEach((val, r) => {
+        profiles.push({ num: c, time: r, val });
+      });
+    });
+
+    return profiles;
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private readExcel(path: string, sheetName: string): any[] {
     const workbook = xlsx.readFile(path);
@@ -75,5 +89,37 @@ export class Reader {
     const json = xlsx.utils.sheet_to_json(sheet);
 
     return json;
+  }
+
+  private readProfile(path: string, sheetName: string): number[][] {
+    const workbook = xlsx.readFile(path);
+    const sheet = workbook.Sheets[sheetName];
+    const range = sheet["!ref"];
+
+    if (!range) throw new Error("range is undefined.");
+
+    const decodeRange = utils.decode_range(range);
+    const array: number[][] = [];
+
+    for (
+      let colIndex = decodeRange.s.c;
+      colIndex <= decodeRange.e.c;
+      colIndex++
+    ) {
+      const columns: number[] = [];
+      for (
+        let rowIndex = decodeRange.s.r;
+        rowIndex <= decodeRange.e.r;
+        rowIndex++
+      ) {
+        const address = utils.encode_cell({ r: rowIndex, c: colIndex });
+        const cell = sheet[address];
+
+        columns.push(cell.v);
+      }
+      array.push(columns);
+    }
+
+    return array;
   }
 }

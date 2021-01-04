@@ -1,23 +1,22 @@
 import { FeederFactory } from "./factory/FeederFactory";
 import { LineFactory } from "./factory/LineFactory";
 import { NodeFactory } from "./factory/NodeFactory";
+import { ProfileFactory } from "./factory/ProfileFactory";
 import { Feeder } from "./model/Feeder";
 import { FeederData } from "./model/FeederData";
 import { Line } from "./model/Line";
 import { LineCodeData } from "./model/LineCodeData";
 import { Node } from "./model/Node";
 import { PositionData } from "./model/PositionData";
+import { Profile } from "./model/Profile";
+import { ProfileData } from "./model/ProfileData";
 
 export class Converter {
-  private readonly feederFactory: FeederFactory;
-  private readonly nodeFactory: NodeFactory;
-  private readonly lineFactory: LineFactory;
-
-  constructor() {
-    this.feederFactory = new FeederFactory();
-    this.nodeFactory = new NodeFactory();
-    this.lineFactory = new LineFactory();
-  }
+  constructor(
+    private readonly feederFactory: FeederFactory,
+    private readonly nodeFactory: NodeFactory,
+    private readonly lineFactory: LineFactory
+  ) {}
 
   toFeeder(networkNum: number, feederNum: number): Feeder {
     return this.feederFactory.create({ networkNum, feederNum });
@@ -83,5 +82,19 @@ export class Converter {
     });
 
     return lines.map((l) => this.lineFactory.create(l));
+  }
+
+  toLoads(summerLoads: ProfileData, winterLoads: ProfileData): Profile[] {
+    const profileFactory = new ProfileFactory();
+    const sLoads = summerLoads.map((l) => profileFactory.create(l, "summer"));
+    const wLoads = winterLoads.map((l) => profileFactory.create(l, "winter"));
+
+    return [...sLoads, ...wLoads];
+  }
+
+  toProfiles(profileData: ProfileData, season: "summer" | "winter"): Profile[] {
+    const profileFactory = new ProfileFactory();
+
+    return profileData.map((p) => profileFactory.create(p, season));
   }
 }
