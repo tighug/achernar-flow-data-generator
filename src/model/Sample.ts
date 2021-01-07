@@ -1,4 +1,4 @@
-export type Profile = {
+export type Sample = {
   id: number;
   num: number;
   hour: number;

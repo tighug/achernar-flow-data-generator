@@ -3,8 +3,8 @@ import { Node } from "./model/Node";
 import { NodeArray } from "./model/NodeArray";
 import { Line } from "./model/Line";
 import { LineArray } from "./model/LineArray";
-import { Profile } from "./model/Profile";
-import { ProfileArray } from "./model/ProfileArray";
+import { Sample } from "./model/Sample";
+import { SampleArray } from "./model/SampleArray";
 
 export class Serializer {
   feederToArray(feeder: Feeder): [number, number, number] {
@@ -25,7 +25,6 @@ export class Serializer {
   linesToArray(lines: Line[]): LineArray {
     return lines.map((l) => [
       l.id,
-      l.feederId,
       l.prevNodeId,
       l.nextNodeId,
       l.lengthM,
@@ -36,14 +35,7 @@ export class Serializer {
     ]);
   }
 
-  profilesToArray(profiles: Profile[]): ProfileArray {
-    return profiles.map((p) => [
-      p.id,
-      p.num,
-      p.hour,
-      p.minute,
-      p.val,
-      p.season,
-    ]);
+  samplesToArray(samples: Sample[]): SampleArray {
+    return samples.map((p) => [p.id, p.num, p.hour, p.minute, p.val, p.season]);
   }
 }

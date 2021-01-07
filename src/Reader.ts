@@ -3,7 +3,7 @@ import fs from "fs";
 import { LineCodeData } from "./model/LineCodeData";
 import { FeederData } from "./model/FeederData";
 import { PositionData } from "./model/PositionData";
-import { ProfileData } from "./model/ProfileData";
+import { SampleData } from "./model/SampleData";
 
 export class Reader {
   readFeederFile(path: string): FeederData {
@@ -69,9 +69,9 @@ export class Reader {
     return lineCodeData;
   }
 
-  readProfileFile(path: string): ProfileData {
+  readProfileFile(path: string): SampleData {
     const array = this.readProfile(path, "Sheet1");
-    const profiles: ProfileData = [];
+    const profiles: SampleData = [];
 
     array.forEach((column, c) => {
       column.forEach((val, r) => {
