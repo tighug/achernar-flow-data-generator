@@ -1,6 +1,5 @@
 export type LineArray = [
   number, // id
-  number, // feederId
   number, // prevNodeId
   number, // nextNodeId
   number, // lengthM
