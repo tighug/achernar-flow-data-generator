@@ -12,7 +12,6 @@ export class LineFactory {
 }
 
 type LineProps = {
-  readonly feederId: number;
   readonly prevNodeId: number;
   readonly nextNodeId: number;
   readonly lengthM: number;

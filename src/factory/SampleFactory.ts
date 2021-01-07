@@ -1,9 +1,9 @@
-import { Profile } from "../model/Profile";
+import { Sample } from "../model/Sample";
 
-export class ProfileFactory {
+export class SampleFactory {
   private id = 1;
 
-  create(props: ProfileProps, season: "summer" | "winter"): Profile {
+  create(props: SampleProps, season: "summer" | "winter"): Sample {
     const amount = props.time * 5;
     return {
       id: this.id++,
@@ -16,7 +16,7 @@ export class ProfileFactory {
   }
 }
 
-type ProfileProps = {
+type SampleProps = {
   num: number;
   time: number;
   val: number;

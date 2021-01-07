@@ -1,4 +1,4 @@
-export type ProfileArray = [
+export type SampleArray = [
   number, // id
   number, // num
   number, // hour

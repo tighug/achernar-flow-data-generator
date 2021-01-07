@@ -1,15 +1,15 @@
 import { FeederFactory } from "./factory/FeederFactory";
 import { LineFactory } from "./factory/LineFactory";
 import { NodeFactory } from "./factory/NodeFactory";
-import { ProfileFactory } from "./factory/ProfileFactory";
+import { SampleFactory } from "./factory/SampleFactory";
 import { Feeder } from "./model/Feeder";
 import { FeederData } from "./model/FeederData";
 import { Line } from "./model/Line";
 import { LineCodeData } from "./model/LineCodeData";
 import { Node } from "./model/Node";
 import { PositionData } from "./model/PositionData";
-import { Profile } from "./model/Profile";
-import { ProfileData } from "./model/ProfileData";
+import { Sample } from "./model/Sample";
+import { SampleData } from "./model/SampleData";
 
 export class Converter {
   constructor(
@@ -50,7 +50,6 @@ export class Converter {
   }
 
   toLines(
-    feederId: number,
     nodes: Node[],
     feederData: FeederData,
     lineCodeData: LineCodeData
@@ -70,7 +69,6 @@ export class Converter {
       if (!nextNode) throw new Error("nextNot must not be undefined.");
 
       return {
-        feederId,
         prevNodeId: prevNode.id,
         nextNodeId: nextNode.id,
         lengthM: line.lengthM,
@@ -84,17 +82,17 @@ export class Converter {
     return lines.map((l) => this.lineFactory.create(l));
   }
 
-  toLoads(summerLoads: ProfileData, winterLoads: ProfileData): Profile[] {
-    const profileFactory = new ProfileFactory();
-    const sLoads = summerLoads.map((l) => profileFactory.create(l, "summer"));
-    const wLoads = winterLoads.map((l) => profileFactory.create(l, "winter"));
+  toLoads(summerLoads: SampleData, winterLoads: SampleData): Sample[] {
+    const sampleFactory = new SampleFactory();
+    const sLoads = summerLoads.map((l) => sampleFactory.create(l, "summer"));
+    const wLoads = winterLoads.map((l) => sampleFactory.create(l, "winter"));
 
     return [...sLoads, ...wLoads];
   }
 
-  toProfiles(profileData: ProfileData, season: "summer" | "winter"): Profile[] {
-    const profileFactory = new ProfileFactory();
+  toSamples(sampleData: SampleData, season: "summer" | "winter"): Sample[] {
+    const sampleFactory = new SampleFactory();
 
-    return profileData.map((p) => profileFactory.create(p, season));
+    return sampleData.map((p) => sampleFactory.create(p, season));
   }
 }

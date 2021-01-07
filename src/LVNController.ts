@@ -45,12 +45,7 @@ export class LVNController {
           feederData,
           positionData
         );
-        const lines = this.converter.toLines(
-          feeder.id,
-          nodes,
-          feederData,
-          lineCodeData
-        );
+        const lines = this.converter.toLines(nodes, feederData, lineCodeData);
 
         // Serialize models
         const feederArray = this.serializer.feederToArray(feeder);

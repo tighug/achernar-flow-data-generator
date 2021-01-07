@@ -2,7 +2,7 @@ import fs from "fs";
 import { FeederArray } from "./model/FeederArray";
 import { LineArray } from "./model/LineArray";
 import { NodeArray } from "./model/NodeArray";
-import { ProfileArray } from "./model/ProfileArray";
+import { SampleArray } from "./model/SampleArray";
 
 export class Writer {
   writeFeeders(feederArray: FeederArray, path: string): void {
@@ -17,8 +17,8 @@ export class Writer {
     this.toCSV(lineArray, path);
   }
 
-  writeProfiles(profileArray: ProfileArray, path: string): void {
-    this.toCSV(profileArray, path);
+  writeSamples(sampleArray: SampleArray, path: string): void {
+    this.toCSV(sampleArray, path);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

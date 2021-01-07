@@ -1,4 +1,4 @@
-export type ProfileData = {
+export type SampleData = {
   num: number;
   time: number;
   val: number;
