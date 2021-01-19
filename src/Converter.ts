@@ -29,7 +29,7 @@ export class Converter {
   ): Node[] {
     const nodes = positionData.map((node) => {
       const hasLoad = () => {
-        if (node.num === 1) return false;
+        if (node.num === 1) return 0;
         const matchedLine = feederData.find(
           (line) => line.nextNodeNum === node.num
         );

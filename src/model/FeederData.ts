@@ -3,6 +3,6 @@ export type FeederData = {
   nextNodeNum: number;
   lengthM: number;
   phase: number;
-  hasLoad: boolean;
+  hasLoad: number;
   code: string;
 }[];
