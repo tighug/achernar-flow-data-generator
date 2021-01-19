@@ -4,5 +4,5 @@ export type NodeArray = [
   number, // num
   number, // posX
   number, // posY
-  boolean // hasLoad
+  number // hasLoad
 ][];

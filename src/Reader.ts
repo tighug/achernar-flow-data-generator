@@ -18,7 +18,7 @@ export class Reader {
         nextNodeNum: obj["NodeB"],
         lengthM: obj["D[m]"],
         phase: obj["Phase"],
-        hasLoad: obj["Load"] === 1,
+        hasLoad: obj["Load"],
         code: modCode,
       };
     });

@@ -4,5 +4,5 @@ export type Node = {
   readonly num: number;
   readonly posX: number;
   readonly posY: number;
-  readonly hasLoad: boolean;
+  readonly hasLoad: number;
 };
