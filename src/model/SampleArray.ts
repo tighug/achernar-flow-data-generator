@@ -4,5 +4,6 @@ export type SampleArray = [
   number, // hour
   number, // minute
   number, // val
-  string // season
+  string, // season
+  string // type
 ][];

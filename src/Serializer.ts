@@ -16,8 +16,8 @@ export class Serializer {
       j.id,
       j.feederId,
       j.num,
-      j.posX,
-      j.posY,
+      Number(j.posX.toFixed(4)),
+      Number(j.posY.toFixed(4)),
       j.hasLoad,
     ]);
   }
@@ -27,7 +27,7 @@ export class Serializer {
       l.id,
       l.prevNodeId,
       l.nextNodeId,
-      l.lengthM,
+      Number(l.lengthM.toFixed(4)),
       l.phase,
       l.code,
       l.rOhmPerKm,
@@ -36,6 +36,14 @@ export class Serializer {
   }
 
   samplesToArray(samples: Sample[]): SampleArray {
-    return samples.map((p) => [p.id, p.num, p.hour, p.minute, p.val, p.season]);
+    return samples.map((p) => [
+      p.id,
+      p.num,
+      p.hour,
+      p.minute,
+      Number(p.val.toFixed(4)),
+      p.season,
+      p.type,
+    ]);
   }
 }

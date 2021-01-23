@@ -8,7 +8,7 @@ import { Line } from "./model/Line";
 import { LineCodeData } from "./model/LineCodeData";
 import { Node } from "./model/Node";
 import { PositionData } from "./model/PositionData";
-import { Sample } from "./model/Sample";
+import { Sample, SampleType, Season } from "./model/Sample";
 import { SampleData } from "./model/SampleData";
 
 export class Converter {
@@ -82,17 +82,13 @@ export class Converter {
     return lines.map((l) => this.lineFactory.create(l));
   }
 
-  toLoads(summerLoads: SampleData, winterLoads: SampleData): Sample[] {
-    const sampleFactory = new SampleFactory();
-    const sLoads = summerLoads.map((l) => sampleFactory.create(l, "summer"));
-    const wLoads = winterLoads.map((l) => sampleFactory.create(l, "winter"));
-
-    return [...sLoads, ...wLoads];
-  }
-
-  toSamples(sampleData: SampleData, season: "summer" | "winter"): Sample[] {
+  toSamples(
+    sampleData: SampleData,
+    season: Season,
+    type: SampleType
+  ): Sample[] {
     const sampleFactory = new SampleFactory();
 
-    return sampleData.map((p) => sampleFactory.create(p, season));
+    return sampleData.map((p) => sampleFactory.create(p, season, type));
   }
 }
