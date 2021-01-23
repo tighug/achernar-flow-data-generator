@@ -4,5 +4,9 @@ export type Sample = {
   hour: number;
   minute: number;
   val: number;
-  season: "summer" | "winter";
+  season: Season;
+  type: SampleType;
 };
+
+export type Season = "summer" | "winter";
+export type SampleType = "load" | "pv" | "ehp" | "uchp";

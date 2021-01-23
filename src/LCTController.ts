@@ -27,26 +27,24 @@ export class LCTController {
     const winterUCHPData = this.reader.readProfileFile(winterUCHPPath);
 
     // Convert datas into models
-    const loads = this.converter.toLoads(summerLoadData, winterLoadData);
-    const pvs = this.converter.toSamples(summerPVData, "summer");
-    const ehps = this.converter.toSamples(winterEHPData, "winter");
-    const uchps = this.converter.toSamples(winterUCHPData, "winter");
+    const sloads = this.converter.toSamples(summerLoadData, "summer", "load");
+    const wloads = this.converter.toSamples(winterLoadData, "winter", "load");
+    const pvs = this.converter.toSamples(summerPVData, "summer", "pv");
+    const ehps = this.converter.toSamples(winterEHPData, "winter", "ehp");
+    const uchps = this.converter.toSamples(winterUCHPData, "winter", "uchp");
 
     // Serialize
-    const loadArray = this.serializer.samplesToArray(loads);
-    const pvArray = this.serializer.samplesToArray(pvs);
-    const ehpArray = this.serializer.samplesToArray(ehps);
-    const uchpArray = this.serializer.samplesToArray(uchps);
+    const sampleArray = this.serializer.samplesToArray([
+      ...sloads,
+      ...wloads,
+      ...pvs,
+      ...ehps,
+      ...uchps,
+    ]);
 
     const outPath = path.resolve(__dirname, "../out");
-    const outLoadsPath = path.join(outPath, "load_samples.csv");
-    const outPvsPath = path.join(outPath, "pv_samples.csv");
-    const outEhpsPath = path.join(outPath, "ehp_samples.csv");
-    const outUchpsPath = path.join(outPath, "uchp_samples.csv");
+    const outSamplesPath = path.join(outPath, "samples.csv");
 
-    this.writer.writeSamples(loadArray, outLoadsPath);
-    this.writer.writeSamples(pvArray, outPvsPath);
-    this.writer.writeSamples(ehpArray, outEhpsPath);
-    this.writer.writeSamples(uchpArray, outUchpsPath);
+    this.writer.writeSamples(sampleArray, outSamplesPath);
   }
 }

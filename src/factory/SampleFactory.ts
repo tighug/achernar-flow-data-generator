@@ -1,9 +1,9 @@
-import { Sample } from "../model/Sample";
+import { Sample, SampleType, Season } from "../model/Sample";
 
 export class SampleFactory {
   private id = 1;
 
-  create(props: SampleProps, season: "summer" | "winter"): Sample {
+  create(props: SampleProps, season: Season, type: SampleType): Sample {
     const amount = props.time * 5;
     return {
       id: this.id++,
@@ -12,6 +12,7 @@ export class SampleFactory {
       num: props.num + 1,
       val: props.val,
       season,
+      type,
     };
   }
 }
