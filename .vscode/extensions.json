@@ -4,7 +4,8 @@
     "editorconfig.editorconfig",
     "yzhang.markdown-all-in-one",
     "christian-kohler.npm-intellisense",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "mechatroner.rainbow-csv"
   ],
   "unwantedRecommendations": []
 }
