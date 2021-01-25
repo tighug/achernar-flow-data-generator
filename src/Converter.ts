@@ -15,7 +15,8 @@ export class Converter {
   constructor(
     private readonly feederFactory: FeederFactory,
     private readonly nodeFactory: NodeFactory,
-    private readonly lineFactory: LineFactory
+    private readonly lineFactory: LineFactory,
+    private readonly sampleFactory: SampleFactory
   ) {}
 
   toFeeder(networkNum: number, feederNum: number): Feeder {
@@ -87,8 +88,6 @@ export class Converter {
     season: Season,
     type: SampleType
   ): Sample[] {
-    const sampleFactory = new SampleFactory();
-
-    return sampleData.map((p) => sampleFactory.create(p, season, type));
+    return sampleData.map((p) => this.sampleFactory.create(p, season, type));
   }
 }

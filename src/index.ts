@@ -8,6 +8,7 @@ import { NodeFactory } from "./factory/NodeFactory";
 import { LineFactory } from "./factory/LineFactory";
 import { LVNController } from "./LVNController";
 import { LCTController } from "./LCTController";
+import { SampleFactory } from "./factory/SampleFactory";
 
 function main(): void {
   const resourcePath = path.resolve(__dirname, "../resource");
@@ -16,8 +17,14 @@ function main(): void {
   const feederFactory = new FeederFactory();
   const nodeFactory = new NodeFactory();
   const lineFactory = new LineFactory();
+  const sampleFactory = new SampleFactory();
   const reader = new Reader();
-  const converter = new Converter(feederFactory, nodeFactory, lineFactory);
+  const converter = new Converter(
+    feederFactory,
+    nodeFactory,
+    lineFactory,
+    sampleFactory
+  );
   const serializer = new Serializer();
   const writer = new Writer();
   const lvnController = new LVNController(
