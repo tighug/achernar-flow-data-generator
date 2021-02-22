@@ -1,6 +1,6 @@
 # achernar-flow-data-generator
 
-A power flow data generator for achernar-flow-db.
+A power flow data generator for achernar.
 
 This generate csv files from the LV network model data published by Electricity North West.
 
@@ -19,6 +19,14 @@ git clone https://github.com/tighug/achernar-flow-data-generator.git
 5. Rename a few "Network\_..." directories to "network\_..." in `lvn/`
 6. Run `yarn start`
 7. Get csv files in the `out/`
+
+## Contributing
+
+Please open issues and pull requests for new features, questions, and bug fixes.
+
+### Requirements
+
+- `yarn v1.22.10`
 
 ## License
 
